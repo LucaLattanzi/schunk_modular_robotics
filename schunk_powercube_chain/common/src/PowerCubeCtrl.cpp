@@ -504,8 +504,8 @@ bool PowerCubeCtrl::MoveVel(const std::vector<double>& velocities)
 		cmd_pos = (cmd_time/1000.0) * velocities[i];
 		pthread_mutex_lock(&m_mutex);
 		//std::cout << "Modul_id = " << m_params->GetModuleID(i) <<", step= "<< m_positions[i] + cmd_pos << ", time = " << cmd_time << std::endl;
-		//int ret = PCube_moveVelExtended(m_DeviceHandle, m_params->GetModuleID(i), velocities[i], &m_status[i], &m_dios[i], &pos);
-		int ret = PCube_moveStepExtended(m_DeviceHandle, m_params->GetModuleID(i), m_positions[i] + cmd_pos, 100*cmd_time, &m_status[i], &m_dios[i], &pos);
+		int ret = PCube_moveVelExtended(m_DeviceHandle, m_params->GetModuleID(i), velocities[i], &m_status[i], &m_dios[i], &pos);
+		//int ret = PCube_moveStepExtended(m_DeviceHandle, m_params->GetModuleID(i), m_positions[i] + cmd_pos, 100*cmd_time, &m_status[i], &m_dios[i], &pos);
 		pthread_mutex_unlock(&m_mutex);
 		
 		if (ret != 0)
